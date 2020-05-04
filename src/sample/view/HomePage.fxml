@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane
+        fx:id="root"
+        prefHeight="400.0" prefWidth="600.0"
+        style="-fx-background-color: #CBD4CA; -fx-border-color: #000; -fx-border-width: 2;"
+        xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
+        fx:controller="sample.controller.HomePage">
+    <children>
+        <Button id="showInstructorsInfo" layoutX="166.0" layoutY="160.0" mnemonicParsing="false" prefHeight="39.0"
+                prefWidth="267.0" style="-fx-background-color: #059200;" text="Show instructors information"
+                textFill="WHITE"
+                onAction="#showInstructorInfo"
+
+        >
+            <font>
+                <Font size="18.0"/>
+            </font>
+        </Button>
+        <Button id="showStudentsInfo" layoutX="166.0" layoutY="244.0" mnemonicParsing="false" prefHeight="39.0"
+                prefWidth="267.0" style="-fx-background-color: #059200;" text="Show students information"
+                textFill="WHITE"
+                onAction="#showStudentInfo">
+            <font>
+                <Font size="18.0"/>
+            </font>
+        </Button>
+        <Button id="showCoursesInfo" layoutX="166.0" layoutY="82.0" mnemonicParsing="false" prefHeight="39.0"
+                prefWidth="267.0" style="-fx-background-color: #059200;" text="Show courses information"
+                textFill="WHITE"
+                onAction="#showCoursesInfo"
+
+        >
+            <font>
+                <Font size="18.0"/>
+            </font>
+        </Button>
+    </children>
+</AnchorPane>
