@@ -8,85 +8,134 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
-            minWidth="-Infinity" prefHeight="485.0" prefWidth="739.0"
-            style="-fx-background-color: #CBD4CA;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<?import javafx.scene.control.ComboBox?>
+<AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+            prefHeight="485.0"
+            prefWidth="739.0" style="-fx-background-color: #CBD4CA;" xmlns="http://javafx.com/javafx/11.0.1"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="sample.controller.AddStudent">
     <children>
         <Label layoutX="26.0" layoutY="63.0" prefHeight="30.0" prefWidth="75.0" text="ID" textFill="#cb0600">
             <font>
-                <Font size="18.0" />
+                <Font size="18.0"/>
             </font>
         </Label>
         <Label layoutX="359.0" layoutY="63.0" prefHeight="30.0" prefWidth="94.0" text="First Name" textFill="#cb0600">
             <font>
-                <Font size="16.0" />
+                <Font size="16.0"/>
             </font>
         </Label>
         <Label layoutX="26.0" layoutY="129.0" prefHeight="30.0" prefWidth="106.0" text="Father Name" textFill="#cb0600">
             <font>
-                <Font size="16.0" />
+                <Font size="16.0"/>
             </font>
         </Label>
-        <Label layoutX="359.0" layoutY="129.0" prefHeight="30.0" prefWidth="140.0" text="Grandfather Name" textFill="#cb0600">
+        <Label layoutX="359.0" layoutY="129.0" prefHeight="30.0" prefWidth="140.0" text="Grandfather Name"
+               textFill="#cb0600">
             <font>
-                <Font size="16.0" />
+                <Font size="16.0"/>
             </font>
         </Label>
         <Label layoutX="26.0" layoutY="193.0" prefHeight="30.0" prefWidth="140.0" text="Last Name" textFill="#cb0600">
             <font>
-                <Font size="16.0" />
+                <Font size="16.0"/>
             </font>
         </Label>
         <Label layoutX="359.0" layoutY="193.0" prefHeight="30.0" prefWidth="140.0" text="City" textFill="#cb0600">
             <font>
-                <Font size="16.0" />
+                <Font size="16.0"/>
             </font>
         </Label>
         <Label layoutX="26.0" layoutY="263.0" prefHeight="30.0" prefWidth="140.0" text="District" textFill="#cb0600">
             <font>
-                <Font size="16.0" />
+                <Font size="16.0"/>
             </font>
         </Label>
         <Label layoutX="359.0" layoutY="263.0" prefHeight="30.0" prefWidth="140.0" text="Street" textFill="#cb0600">
             <font>
-                <Font size="16.0" />
+                <Font size="16.0"/>
             </font>
         </Label>
         <Label layoutX="359.0" layoutY="323.0" prefHeight="30.0" prefWidth="140.0" text="Phone" textFill="#cb0600">
             <font>
-                <Font size="16.0" />
+                <Font size="16.0"/>
             </font>
         </Label>
-        <TextField layoutX="144.0" layoutY="65.0" promptText="Enter ID" style="-fx-background-color: #FFF;" />
-        <TextField layoutX="144.0" layoutY="131.0" promptText="Enter father name" style="-fx-background-color: #FFF;" />
-        <TextField layoutX="144.0" layoutY="195.0" promptText="Enter last name" style="-fx-background-color: #FFF;" />
-        <TextField layoutX="144.0" layoutY="265.0" promptText="Enter district" style="-fx-background-color: #FFF;" />
-        <TextField layoutX="516.0" layoutY="65.0" promptText="Enter first name" style="-fx-background-color: #FFF;" />
-        <TextField layoutX="516.0" layoutY="131.0" promptText="Enter grandfather name" style="-fx-background-color: #FFF;" />
-        <TextField layoutX="516.0" layoutY="195.0" promptText="Enter city" style="-fx-background-color: #FFF;" />
-        <TextField layoutX="516.0" layoutY="265.0" promptText="Enter street" style="-fx-background-color: #FFF;" />
-        <TextField layoutX="516.0" layoutY="325.0" promptText="Enter phone" style="-fx-background-color: #FFF;" />
-        <CheckBox id="chb_gender" alignment="CENTER" layoutX="144.0" layoutY="325.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="94.0" selected="true" style="-fx-background-color: #fff;" text="Male" textFill="#cb0600">
+        <TextField fx:id="ID" layoutX="144.0" layoutY="65.0" promptText="Enter ID" style="-fx-background-color: #FFF;">
             <font>
-                <Font size="14.0" />
+                <Font size="14.0"/>
+            </font>
+        </TextField>
+        <TextField fx:id="father_name" layoutX="144.0" layoutY="131.0" promptText="Enter father name"
+                   style="-fx-background-color: #FFF;">
+            <font>
+                <Font size="14.0"/>
+            </font>
+        </TextField>
+        <TextField fx:id="last_name" layoutX="144.0" layoutY="195.0" promptText="Enter last name"
+                   style="-fx-background-color: #FFF;">
+            <font>
+                <Font size="14.0"/>
+            </font>
+        </TextField>
+        <TextField fx:id="district" layoutX="144.0" layoutY="265.0" promptText="Enter district"
+                   style="-fx-background-color: #FFF;">
+            <font>
+                <Font size="14.0"/>
+            </font>
+        </TextField>
+        <TextField fx:id="first_name" layoutX="516.0" layoutY="65.0" promptText="Enter first name"
+                   style="-fx-background-color: #FFF;">
+            <font>
+                <Font size="14.0"/>
+            </font>
+        </TextField>
+        <TextField fx:id="grand_father_name" layoutX="516.0" layoutY="131.0" promptText="Enter grandfather name"
+                   style="-fx-background-color: #FFF;"/>
+        <ComboBox fx:id="city" layoutX="516.0" layoutY="195.0" promptText="Enter city"
+                  style="-fx-background-color: #FFF;">
+        </ComboBox>
+        <TextField fx:id="street" layoutX="516.0" layoutY="265.0" promptText="Enter street"
+                   style="-fx-background-color: #FFF;">
+            <font>
+                <Font size="14.0"/>
+            </font>
+        </TextField>
+        <TextField fx:id="phone" layoutX="516.0" layoutY="325.0" promptText="Enter phone"
+                   style="-fx-background-color: #FFF;">
+            <font>
+                <Font size="14.0"/>
+            </font>
+        </TextField>
+        <CheckBox id="chb_gender" fx:id="gender" alignment="CENTER" layoutX="144.0" layoutY="325.0"
+                  mnemonicParsing="false"
+                  prefHeight="26.0" prefWidth="94.0" selected="true" style="-fx-background-color: #fff;" text="Male"
+                  textFill="#cb0600">
+            <font>
+                <Font size="14.0"/>
             </font>
             <padding>
-                <Insets left="8.0" />
+                <Insets left="8.0"/>
             </padding>
         </CheckBox>
         <Label layoutX="26.0" layoutY="323.0" prefHeight="30.0" prefWidth="140.0" text="Gender" textFill="#cb0600">
             <font>
-                <Font size="16.0" />
+                <Font size="16.0"/>
             </font>
         </Label>
-        <Button layoutX="213.0" layoutY="403.0" mnemonicParsing="false" style="-fx-background-color: #FFF; -fx-border-color: #000; -fx-background-radius: 12; -fx-border-radius: 12; -fx-border-width: 0.5;" text="Cancel" textFill="RED">
+        <Button layoutX="213.0" layoutY="403.0" mnemonicParsing="false"
+                style="-fx-background-color: #FFF; -fx-border-color: #000; -fx-background-radius: 12; -fx-border-radius: 12; -fx-border-width: 0.5;"
+                text="Cancel" textFill="RED"
+        onAction="#Cancel">
             <font>
-                <Font size="15.0" />
+                <Font size="15.0"/>
             </font>
         </Button>
-        <Button layoutX="462.0" layoutY="403.0" mnemonicParsing="false" style="-fx-background-color: #FFF; -fx-border-color: #000; -fx-background-radius: 12; -fx-border-radius: 12; -fx-border-width: 0.5;" text="Save" textFill="RED">
+        <Button layoutX="462.0" layoutY="403.0" mnemonicParsing="false"
+                style="-fx-background-color: #FFF; -fx-border-color: #000; -fx-background-radius: 12; -fx-border-radius: 12; -fx-border-width: 0.5;"
+                text="Add student" onAction="#addStd" textFill="RED">
             <font>
-                <Font size="15.0" />
+                <Font size="15.0"/>
             </font>
         </Button>
     </children>

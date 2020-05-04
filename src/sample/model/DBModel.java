@@ -104,30 +104,32 @@ public class DBModel {
         }
     }
 
-    public String getPhoneInstructor(String id) {
+    public ArrayList<Object> getPhoneInstructor(String id) {
         String sql = "select phone_number from instructor natural join phone_instructor where id = ?;";
         try (PreparedStatement st = con.prepareStatement(sql)) {
+            ArrayList<Object> list = new ArrayList<>();
             st.setString(1, id);
             ResultSet rs = st.executeQuery();
-            if (rs.next()) {
-                return rs.getString(1);
+            while (rs.next()) {
+                list.add(rs.getString(1));
             }
-            return null;
+            return list;
         } catch (SQLException ex) {
             ex.printStackTrace();
             return null;
         }
     }
 
-    public String getCoursesInstructorTeaches(String id) {
+    public ArrayList<String> getCoursesInstructorTeaches(String id) {
         String sql = "select course_id from instructor natural join teaches where id = ?;";
         try (PreparedStatement st = con.prepareStatement(sql)) {
+            ArrayList<String> list = new ArrayList<>();
             st.setString(1, id);
             ResultSet rs = st.executeQuery();
-            if (rs.next()) {
-                return rs.getString(1);
+            while (rs.next()) {
+                list.add(rs.getString(1));
             }
-            return null;
+            return list;
         } catch (SQLException ex) {
             ex.printStackTrace();
             return null;
@@ -275,20 +277,18 @@ public class DBModel {
             ex.printStackTrace();
             return null;
         }
-
     }
 
-    public String getPhoneStd(String id) {
+    public ArrayList<Object> getPhoneStd(String id) {
         String sql = "select phone_number from student s natural join phone_student where id = ?;";
         try (PreparedStatement st = con.prepareStatement(sql)) {
+            ArrayList<Object> list = new ArrayList<>();
             st.setString(1, id);
             ResultSet rs = st.executeQuery();
-            if (rs.next()) {
-                //  System.out.println(rs.getInt(1));
-                return String.valueOf(rs.getInt(1));
-
+            while (rs.next()) {
+                list.add(String.valueOf(rs.getInt(1)));
             }
-            return null;
+            return list;
         } catch (SQLException ex) {
 
             ex.printStackTrace();
@@ -297,13 +297,33 @@ public class DBModel {
 
     }
 
-    public String getCoursesTakeStd(String id) {
+    public ArrayList<String> getCoursesTakeStd(String id) {
         String sql = "select course_id from student s natural join takes where id = ?;";
         try (PreparedStatement st = con.prepareStatement(sql)) {
             st.setString(1, id);
             ResultSet rs = st.executeQuery();
-            if (rs.next()) {
+            ArrayList<String> list = new ArrayList<>();
+
+            while (rs.next()) {
                 //  System.out.println(rs.getString(1));
+                list.add(rs.getString(1));
+            }
+            return list;
+        } catch (SQLException ex) {
+
+            ex.printStackTrace();
+            return null;
+        }
+
+    }
+
+    public String getNameCourse(String id) {
+        String sql = "select name from course where course_id = ? ;";
+        try (PreparedStatement st = con.prepareStatement(sql)) {
+            st.setString(1, id);
+            ResultSet rs = st.executeQuery();
+            if (rs.next()) {
+                //System.out.println(rs.getString(1));
                 return rs.getString(1);
             }
             return null;
@@ -312,9 +332,186 @@ public class DBModel {
             ex.printStackTrace();
             return null;
         }
-
     }
 
+    public String getBookCourse(String id) {
+        String sql = "select book from course where course_id = ? ;";
+        try (PreparedStatement st = con.prepareStatement(sql)) {
+            st.setString(1, id);
+            ResultSet rs = st.executeQuery();
+            if (rs.next()) {
+                //System.out.println(rs.getString(1));
+                return rs.getString(1);
+            }
+            return null;
+        } catch (SQLException ex) {
+
+            ex.printStackTrace();
+            return null;
+        }
+    }
+
+    public String getInstNameOfCourse(String id) {
+        String sql = "select name from instructor natural join teaches where course_id = ?;";
+        try (PreparedStatement st = con.prepareStatement(sql)) {
+            st.setString(1, id);
+            ResultSet rs = st.executeQuery();
+            if (rs.next()) {
+                //System.out.println(rs.getString(1));
+                return rs.getString(1);
+            }
+            return null;
+        } catch (SQLException ex) {
+
+            ex.printStackTrace();
+            return null;
+        }
+    }
+
+    public String getPlaceCourse(String id) {
+        String sql = "select place from course where course_id = ? ;";
+        try (PreparedStatement st = con.prepareStatement(sql)) {
+            st.setString(1, id);
+            ResultSet rs = st.executeQuery();
+            if (rs.next()) {
+                //System.out.println(rs.getString(1));
+                return rs.getString(1);
+            }
+            return null;
+        } catch (SQLException ex) {
+
+            ex.printStackTrace();
+            return null;
+        }
+    }
+
+
+    public String CountOfStudentTakeCourse(String id) {
+        String sql = "select count(*) from student natural join takes where course_id = ? ;";
+        try (PreparedStatement st = con.prepareStatement(sql)) {
+            st.setString(1, id);
+            ResultSet rs = st.executeQuery();
+            if (rs.next()) {
+                //System.out.println(rs.getString(1));
+                return rs.getString(1);
+            }
+            return null;
+        } catch (SQLException ex) {
+
+            ex.printStackTrace();
+            return null;
+        }
+    }
+
+    public ArrayList<String> getCourseIDs() {
+        String sql = "select course_id from course;";
+        ArrayList<String> ids = new ArrayList<>();
+        try (Statement st = con.createStatement();
+             ResultSet rs = st.executeQuery(sql)
+        ) {
+            while (rs.next()) {
+                ids.add(rs.getString(1));
+                //  System.out.println(rs.getString(1));
+            }
+            return ids;
+        } catch (SQLException ex) {
+
+            ex.printStackTrace();
+            return null;
+        }
+    }
+
+    public ArrayList<String> getStdId() {
+        String sql = "select id from student;";
+        ArrayList<String> ids = new ArrayList<>();
+        try (Statement st = con.createStatement();
+             ResultSet rs = st.executeQuery(sql)
+        ) {
+            while (rs.next()) {
+                ids.add(rs.getString(1));
+            }
+            return ids;
+        } catch (SQLException ex) {
+
+            ex.printStackTrace();
+            return null;
+        }
+    }
+
+    public ArrayList<String> getInstructorsIDs() {
+        String sql = "select id from instructor;";
+        ArrayList<String> ids = new ArrayList<>();
+        try (Statement st = con.createStatement();
+             ResultSet rs = st.executeQuery(sql)
+        ) {
+            while (rs.next()) {
+                ids.add(rs.getString(1));
+            }
+            return ids;
+        } catch (SQLException ex) {
+
+            ex.printStackTrace();
+            return null;
+        }
+    }
+
+    public Boolean insertCourse(String course_id, String name, String book, String place) {
+        String query = "insert into course(course_id , name , book , place) values (?,?,?,?);";
+
+        try (PreparedStatement st = con.prepareStatement(query)) {
+            st.setString(1, course_id);
+            st.setString(2, name);
+            st.setString(3, book);
+            st.setString(4, place);
+
+            return st.executeUpdate() > 0;
+
+        } catch (SQLException ex) {
+
+            ex.printStackTrace();
+            return false;
+        }
+    }
+
+    public Boolean insertStudent(String id, String first_name, String father_name, String gfather_name, String last_name,
+                                 String city, String district, String street, String gender) {
+        String query = "insert into student(id , first_name , father_name , grand_father_name , last_name , " +
+                "city , district , street , gender) values (?,?,?,?,?,?,?,?,?);";
+
+        try (PreparedStatement st = con.prepareStatement(query)) {
+            st.setString(1, id);
+            st.setString(2, first_name);
+            st.setString(3, father_name);
+            st.setString(4, gfather_name);
+            st.setString(5, last_name);
+            st.setString(6, city);
+            st.setString(7, district);
+            st.setString(8, street);
+            st.setString(9, gender);
+
+            return st.executeUpdate() > 0;
+
+        } catch (SQLException ex) {
+
+            ex.printStackTrace();
+            return false;
+        }
+    }
+
+    public Boolean insertPhoneStudent(String id, int phone) {
+        String query = "insert into phone_student(id , phone_number) values (?,?);";
+
+        try (PreparedStatement st = con.prepareStatement(query)) {
+            st.setString(1, id);
+            st.setInt(2, phone);
+            return st.executeUpdate() > 0;
+
+        } catch (SQLException ex) {
+
+            ex.printStackTrace();
+            return false;
+        }
+    }
 
     private void closeEverything() {
         try {

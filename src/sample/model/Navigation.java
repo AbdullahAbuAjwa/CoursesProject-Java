@@ -13,6 +13,7 @@ public class Navigation {
     public final String move_to_home_page = "/sample/view/HomePage.fxml";
     public final String move_to_add_new_student = "/sample/view/add_student.fxml";
     public final String move_to_add_new_instructor = "/sample/view/add_instructor.fxml";
+    public final String move_to_add_new_course = "/sample/view/add_course.fxml";
 
     public void navTo(Parent rootPane, String path) {
         try {

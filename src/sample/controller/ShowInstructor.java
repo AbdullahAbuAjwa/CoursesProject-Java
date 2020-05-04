@@ -1,8 +1,10 @@
 package sample.controller;
 
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
@@ -19,7 +21,7 @@ public class ShowInstructor implements Initializable {
     Navigation navigation = new Navigation();
 
     @FXML
-    public TextField instructor_id;
+    public ComboBox instructor_id;
     @FXML
     public Text ins_name;
     @FXML
@@ -29,15 +31,15 @@ public class ShowInstructor implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        instructor_id.setItems(FXCollections.observableArrayList(db.getInstructorsIDs()));
 
     }
 
-
     public void showInformation() {
-        if (!instructor_id.getText().equals("")) {
-            ins_name.setText(db.getInstructorName(instructor_id.getText()));
-            ins_phone.setText(db.getPhoneInstructor(instructor_id.getText()));
-            ins_teaches.setText(db.getCoursesInstructorTeaches(instructor_id.getText()));
+        if (instructor_id.getValue() != null) {
+            ins_name.setText(db.getInstructorName(instructor_id.getValue().toString()));
+            ins_phone.setText(String.valueOf(db.getPhoneInstructor(instructor_id.getValue().toString())));
+            ins_teaches.setText(String.valueOf(db.getCoursesInstructorTeaches(instructor_id.getValue().toString())));
         }
     }
 
