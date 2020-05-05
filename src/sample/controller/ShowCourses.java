@@ -4,6 +4,8 @@ import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
@@ -16,14 +18,11 @@ import java.util.ResourceBundle;
 
 public class ShowCourses implements Initializable {
 
-    @FXML
-    public ComboBox allCoursesIDs;
+
     Navigation navigation = new Navigation();
     DBModel dbModel = new DBModel();
     @FXML
     public AnchorPane root;
-    @FXML
-    public TextField course_id;
     @FXML
     public Text course_name;
     @FXML
@@ -34,6 +33,12 @@ public class ShowCourses implements Initializable {
     public Text course_count_of_std;
     @FXML
     public Text ins_name_of_course;
+    @FXML
+    public ComboBox allCoursesIDs;
+    @FXML
+    public Button deleteCourse;
+    @FXML
+    public Button editCourse;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -59,5 +64,18 @@ public class ShowCourses implements Initializable {
     public void backToHome() {
         navigation.navTo(root, navigation.move_to_home_page);
     }
+
+    public void deleteCourse() {
+        if (allCoursesIDs.getValue().toString() != null) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Delete course");
+            alert.setHeaderText("Delete course");
+            alert.setContentText("Are you sure ?");
+            alert.showAndWait().ifPresent(rs -> {
+                dbModel.deleteCourse(allCoursesIDs.getValue().toString());
+            });
+        }
+    }
+
 
 }

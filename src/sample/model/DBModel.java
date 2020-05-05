@@ -421,6 +421,24 @@ public class DBModel {
         }
     }
 
+    public ArrayList<String> getCourseExcept(String id) {
+        String sql = "select course_id from course c except select course_id from takes t where id = '" + id + "';";
+        ArrayList<String> ids = new ArrayList<>();
+        try (Statement st = con.createStatement();
+             ResultSet rs = st.executeQuery(sql)
+        ) {
+            while (rs.next()) {
+                ids.add(rs.getString(1));
+                //  System.out.println(rs.getString(1));
+            }
+            return ids;
+        } catch (SQLException ex) {
+
+            ex.printStackTrace();
+            return null;
+        }
+    }
+
     public ArrayList<String> getStdId() {
         String sql = "select id from student;";
         ArrayList<String> ids = new ArrayList<>();
@@ -464,6 +482,22 @@ public class DBModel {
             st.setString(3, book);
             st.setString(4, place);
 
+            return st.executeUpdate() > -1;
+
+        } catch (SQLException ex) {
+
+            ex.printStackTrace();
+            return false;
+        }
+    }
+
+    public Boolean insertStdToCourse(String id, String course_id) {
+        String query = "insert into takes(id , course_id) values (?,?);";
+
+        try (PreparedStatement st = con.prepareStatement(query)) {
+            st.setString(1, id);
+            st.setString(2, course_id);
+
             return st.executeUpdate() > 0;
 
         } catch (SQLException ex) {
@@ -504,6 +538,57 @@ public class DBModel {
         try (PreparedStatement st = con.prepareStatement(query)) {
             st.setString(1, id);
             st.setInt(2, phone);
+            return st.executeUpdate() > 0;
+
+        } catch (SQLException ex) {
+
+            ex.printStackTrace();
+            return false;
+        }
+    }
+
+    public Boolean deleteStudent(String id) {
+        String query = "delete from student where id = ?";
+
+        try (PreparedStatement st = con.prepareStatement(query)) {
+            st.setString(1, id);
+            return st.executeUpdate() > 0;
+
+        } catch (SQLException ex) {
+
+            ex.printStackTrace();
+            return false;
+        }
+    }
+
+    public Boolean deleteCourse(String course_id) {
+        String query = "delete from course where course_id = ?";
+
+        try (PreparedStatement st = con.prepareStatement(query)) {
+            st.setString(1, course_id);
+            return st.executeUpdate() > 0;
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            return false;
+        }
+    }
+
+    public Boolean updateStudent(String id, String first_name, String father_name, String gfather_name, String last_name,
+                                 String city, String district, String street, String gender) {
+        String query = "update student set first_name = ?, father_name = ? , grand_father_name = ? , last_name = ? ," +
+                "city = ? , district = ? , street = ? , gender = ? where id = ?";
+
+        try (PreparedStatement st = con.prepareStatement(query)) {
+            st.setString(1, first_name);
+            st.setString(2, father_name);
+            st.setString(3, gfather_name);
+            st.setString(4, last_name);
+            st.setString(5, city);
+            st.setString(6, district);
+            st.setString(7, street);
+            st.setString(8, gender);
+            st.setString(9, id);
+
             return st.executeUpdate() > 0;
 
         } catch (SQLException ex) {

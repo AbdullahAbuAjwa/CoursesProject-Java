@@ -2,17 +2,15 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<?import javafx.scene.control.ComboBox?>
 <AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-            prefHeight="485.0"
-            prefWidth="739.0" style="-fx-background-color: #CBD4CA;" xmlns="http://javafx.com/javafx/11.0.1"
-            xmlns:fx="http://javafx.com/fxml/1"
+            prefHeight="485.0" prefWidth="739.0" style="-fx-background-color: #CBD4CA;"
+            xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="sample.controller.AddStudent">
     <children>
         <Label layoutX="26.0" layoutY="63.0" prefHeight="30.0" prefWidth="75.0" text="ID" textFill="#cb0600">
@@ -91,9 +89,13 @@
             </font>
         </TextField>
         <TextField fx:id="grand_father_name" layoutX="516.0" layoutY="131.0" promptText="Enter grandfather name"
-                   style="-fx-background-color: #FFF;"/>
-        <ComboBox fx:id="city" layoutX="516.0" layoutY="195.0" promptText="Enter city"
-                  style="-fx-background-color: #FFF;">
+                   style="-fx-background-color: #FFF;">
+            <font>
+                <Font size="14.0"/>
+            </font>
+        </TextField>
+        <ComboBox fx:id="city" layoutX="516.0" layoutY="195.0" prefHeight="26.0" prefWidth="152.0"
+                  promptText="Enter city" style="-fx-background-color: #FFF;">
         </ComboBox>
         <TextField fx:id="street" layoutX="516.0" layoutY="265.0" promptText="Enter street"
                    style="-fx-background-color: #FFF;">
@@ -107,33 +109,28 @@
                 <Font size="14.0"/>
             </font>
         </TextField>
-        <CheckBox id="chb_gender" fx:id="gender" alignment="CENTER" layoutX="144.0" layoutY="325.0"
-                  mnemonicParsing="false"
-                  prefHeight="26.0" prefWidth="94.0" selected="true" style="-fx-background-color: #fff;" text="Male"
-                  textFill="#cb0600">
-            <font>
-                <Font size="14.0"/>
-            </font>
+        <ComboBox id="chb_gender" fx:id="gender" layoutX="144.0" layoutY="325.0" prefHeight="18.0" prefWidth="159.0"
+                  promptText="Enter gender" style="-fx-background-color: #fff;">
+
             <padding>
                 <Insets left="8.0"/>
             </padding>
-        </CheckBox>
+        </ComboBox>
         <Label layoutX="26.0" layoutY="323.0" prefHeight="30.0" prefWidth="140.0" text="Gender" textFill="#cb0600">
             <font>
                 <Font size="16.0"/>
             </font>
         </Label>
-        <Button layoutX="213.0" layoutY="403.0" mnemonicParsing="false"
+        <Button layoutX="210.0" layoutY="435.0" mnemonicParsing="false" onAction="#Cancel"
                 style="-fx-background-color: #FFF; -fx-border-color: #000; -fx-background-radius: 12; -fx-border-radius: 12; -fx-border-width: 0.5;"
-                text="Cancel" textFill="RED"
-        onAction="#Cancel">
+                text="Back" textFill="RED">
             <font>
                 <Font size="15.0"/>
             </font>
         </Button>
-        <Button layoutX="462.0" layoutY="403.0" mnemonicParsing="false"
+        <Button layoutX="455.0" layoutY="435.0" mnemonicParsing="false" onAction="#addStd"
                 style="-fx-background-color: #FFF; -fx-border-color: #000; -fx-background-radius: 12; -fx-border-radius: 12; -fx-border-width: 0.5;"
-                text="Add student" onAction="#addStd" textFill="RED">
+                text="Add student" textFill="RED">
             <font>
                 <Font size="15.0"/>
             </font>

@@ -6,56 +6,66 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="root" prefHeight="485.0" prefWidth="739.0" style="-fx-background-color: #CBD4CA;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.AddCourse">
+<AnchorPane fx:id="root" prefHeight="485.0" prefWidth="739.0" style="-fx-background-color: #CBD4CA;"
+            xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="sample.controller.AddCourse">
     <children>
         <Label layoutX="26.0" layoutY="63.0" prefHeight="30.0" prefWidth="95.0" text="Course ID" textFill="#cb0600">
             <font>
-                <Font size="18.0" />
+                <Font size="18.0"/>
             </font>
         </Label>
-        <TextField fx:id="ID" layoutX="130.0" layoutY="63.0" promptText="Enter ID" style="-fx-background-color: #FFF; -fx-background-radius: 15;">
+        <TextField fx:id="ID" layoutX="130.0" layoutY="63.0" promptText="Enter ID"
+                   style="-fx-background-color: #FFF; -fx-background-radius: 15;">
             <font>
-                <Font size="14.0" />
+                <Font size="14.0"/>
             </font>
         </TextField>
-        <Button layoutX="278.0" layoutY="386.0" mnemonicParsing="false" onAction="#Cancel" style="-fx-background-color: #FFF; -fx-border-color: #000; -fx-background-radius: 12; -fx-border-radius: 12; -fx-border-width: 0.5;" text="Cancel" textFill="RED">
+        <Button layoutX="278.0" layoutY="386.0" mnemonicParsing="false" onAction="#Cancel"
+                style="-fx-background-color: #FFF; -fx-border-color: #000; -fx-background-radius: 12; -fx-border-radius: 12; -fx-border-width: 0.5;"
+                text="Back" textFill="RED">
             <font>
-                <Font size="15.0" />
+                <Font size="15.0"/>
             </font>
         </Button>
-        <Button layoutX="392.0" layoutY="386.0" mnemonicParsing="false" onAction="#addInfo" style="-fx-background-color: #FFF; -fx-border-color: #000; -fx-background-radius: 12; -fx-border-radius: 12; -fx-border-width: 0.5;" text="Add" textFill="RED">
+        <Button layoutX="392.0" layoutY="386.0" mnemonicParsing="false" onAction="#addInfo"
+                style="-fx-background-color: #FFF; -fx-border-color: #000; -fx-background-radius: 12; -fx-border-radius: 12; -fx-border-width: 0.5;"
+                text="Add" textFill="RED">
             <font>
-                <Font size="15.0" />
+                <Font size="15.0"/>
             </font>
         </Button>
         <Label layoutX="26.0" layoutY="128.0" prefHeight="30.0" prefWidth="75.0" text="Name" textFill="#cb0600">
             <font>
-                <Font size="18.0" />
+                <Font size="18.0"/>
             </font>
         </Label>
         <Label layoutX="26.0" layoutY="198.0" prefHeight="30.0" prefWidth="75.0" text="Book" textFill="#cb0600">
             <font>
-                <Font size="18.0" />
+                <Font size="18.0"/>
             </font>
         </Label>
         <Label layoutX="26.0" layoutY="273.0" prefHeight="30.0" prefWidth="75.0" text="Place" textFill="#cb0600">
             <font>
-                <Font size="18.0" />
+                <Font size="18.0"/>
             </font>
         </Label>
-        <TextField fx:id="name" layoutX="130.0" layoutY="128.0" promptText="Enter name" style="-fx-background-color: #FFF; -fx-background-radius: 15;">
+        <TextField fx:id="name" layoutX="130.0" layoutY="128.0" promptText="Enter name"
+                   style="-fx-background-color: #FFF; -fx-background-radius: 15;">
             <font>
-                <Font size="14.0" />
+                <Font size="14.0"/>
             </font>
         </TextField>
-        <TextField fx:id="book" layoutX="130.0" layoutY="198.0" promptText="Enter book" style="-fx-background-color: #FFF; -fx-background-radius: 15;">
+        <TextField fx:id="book" layoutX="130.0" layoutY="198.0" promptText="Enter book"
+                   style="-fx-background-color: #FFF; -fx-background-radius: 15;">
             <font>
-                <Font size="14.0" />
+                <Font size="14.0"/>
             </font>
         </TextField>
-        <TextField fx:id="place" layoutX="130.0" layoutY="273.0" promptText="Enter place" style="-fx-background-color: #FFF; -fx-background-radius: 15;">
+        <TextField fx:id="place" layoutX="130.0" layoutY="273.0" promptText="Enter place"
+                   style="-fx-background-color: #FFF; -fx-background-radius: 15;">
             <font>
-                <Font size="14.0" />
+                <Font size="14.0"/>
             </font>
         </TextField>
     </children>
