@@ -30,4 +30,8 @@ public class HomePage implements Initializable {
     public void showInstructorInfo() {
         navigation.navTo(root, navigation.move_to_show_inst);
     }
+
+    public void showLecturesInfo() {
+        navigation.navTo(root, navigation.move_to_show_lecture);
+    }
 }

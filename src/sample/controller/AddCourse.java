@@ -35,14 +35,15 @@ public class AddCourse implements Initializable {
     public void addInfo() {
         if (ID.getText() != null && name.getText() != null && book.getText() != null
                 && place.getText() != null) {
-            db.insertCourse(ID.getText(),
+            if (db.insertCourse(ID.getText(),
                     name.getText(), book.getText(),
-                    place.getText());
-            showAlert("Success", "Success", "The course added");
-            ID.clear();
-            name.clear();
-            book.clear();
-            place.clear();
+                    place.getText())) {
+                showAlert("Success", "Success", "The course added");
+                ID.clear();
+                name.clear();
+                book.clear();
+                place.clear();
+            }
         } else {
             showAlertError("Error", "Error", "Please fill all fields");
         }

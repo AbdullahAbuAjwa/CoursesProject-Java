@@ -76,26 +76,27 @@ public class AddStudent implements Initializable {
                 || phone.getText() == null) {
             showAlertError("Error", "Error", "Please Enter all fields");
         } else {
-            dbModel.insertStudent(ID.getText(),
+            if (dbModel.insertStudent(ID.getText(),
                     first_name.getText(), father_name.getText(), grand_father_name.getText(),
                     last_name.getText(),
                     city.getValue().toString(),
                     district.getText(),
                     street.getText(),
-                    gender.getValue().toString());
+                    gender.getValue().toString()) &&
+                    dbModel.insertPhoneStudent(ID.getText(), Integer.parseInt(phone.getText()))) {
 
-            dbModel.insertPhoneStudent(ID.getText(), Integer.parseInt(phone.getText()));
-            showAlert("Success", "Success", "The student Added Successfully");
-            ID.clear();
-            first_name.clear();
-            father_name.clear();
-            grand_father_name.clear();
-            last_name.clear();
-            city.setValue("");
-            district.clear();
-            street.clear();
-            phone.clear();
-            gender.setValue("");
+                showAlert("Success", "Success", "The student Added Successfully");
+                ID.clear();
+                first_name.clear();
+                father_name.clear();
+                grand_father_name.clear();
+                last_name.clear();
+                city.setValue("");
+                district.clear();
+                street.clear();
+                phone.clear();
+                gender.setValue("");
+            }
         }
     }
 

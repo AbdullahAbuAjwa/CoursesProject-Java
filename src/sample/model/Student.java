@@ -1,102 +1,61 @@
 package sample.model;
 
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
 public class Student {
-    String ID;
-    String firstName;
-    String fatherName;
-    String grandFatherName;
-    String lastName;
-    String city;
-    String district;
-    String street;
-    String gender;
+    String id;
+    List<Object> phone_number;
+    String first_name;
+    String last_name;
+    String att;
 
-    public Student(String ID, String firstName, String secondName, String grandFatherName,
-                   String lastName, String city, String district, String street, String gender) {
-        this.ID = ID;
-        this.firstName = firstName;
-        this.fatherName = secondName;
-        this.grandFatherName = grandFatherName;
-        this.lastName = lastName;
-        this.city = city;
-        this.district = district;
-        this.street = street;
-        this.gender = gender;
-      //  this.phone = phone;
+    public Student(String id, List<Object> phone_number, String first_name, String last_name, String att) {
+        this.id = id;
+        this.phone_number = phone_number;
+        this.first_name = first_name;
+        this.last_name = last_name;
+        this.att = att;
     }
 
-
-    public String getID() {
-        return ID;
+    public String getId() {
+        return id;
     }
 
-    public void setID(String ID) {
-        this.ID = ID;
+    public void setId(String id) {
+        this.id = id;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public List<Object> getPhone_number() {
+        return phone_number;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setPhone_number(List<Object> phone_number) {
+        this.phone_number = phone_number;
     }
 
-    public String getFatherName() {
-        return fatherName;
+    public String getFirst_name() {
+        return first_name;
     }
 
-    public void setFatherName(String fatherName) {
-        this.fatherName = fatherName;
+    public void setFirst_name(String first_name) {
+        this.first_name = first_name;
     }
 
-    public String getGrandFatherName() {
-        return grandFatherName;
+    public String getLast_name() {
+        return last_name;
     }
 
-    public void setGrandFatherName(String grandFatherName) {
-        this.grandFatherName = grandFatherName;
+    public void setLast_name(String last_name) {
+        this.last_name = last_name;
     }
 
-    public String getLastName() {
-        return lastName;
+    public String getAtt() {
+        return att;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setAtt(String att) {
+        this.att = att;
     }
-
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public String getDistrict() {
-        return district;
-    }
-
-    public void setDistrict(String district) {
-        this.district = district;
-    }
-
-    public String getStreet() {
-        return street;
-    }
-
-    public void setStreet(String street) {
-        this.street = street;
-    }
-
-    public String getGender() {
-        return gender;
-    }
-
-    public void setGender(String gender) {
-        this.gender = gender;
-    }
-
-
 }

@@ -3,16 +3,19 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="root" prefHeight="485.0" prefWidth="739.0" style="-fx-background-color: #CBD4CA;"
+<AnchorPane fx:id="root" prefHeight="646.0" prefWidth="810.0" style="-fx-background-color: #CBD4CA;"
             xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="sample.controller.ShowCourses">
 
     <children>
-        <Button layoutX="376.0" layoutY="416.0" mnemonicParsing="false" onAction="#addNewCourse" prefHeight="34.0"
+        <Button layoutX="371.0" layoutY="568.0" mnemonicParsing="false" onAction="#addNewCourse" prefHeight="34.0"
                 prefWidth="130.0" style="-fx-background-color: #059200; -fx-border-color: #000;" text="Add new course"
                 textFill="WHITE">
             <font>
@@ -44,7 +47,7 @@
             </font>
         </Label>
 
-        <Button layoutX="221.0" layoutY="416.0" mnemonicParsing="false" onAction="#backToHome" prefHeight="34.0"
+        <Button layoutX="208.0" layoutY="568.0" mnemonicParsing="false" onAction="#backToHome" prefHeight="34.0"
                 prefWidth="120.0" style="-fx-background-color: #059200; -fx-border-color: #000;" text="Back"
                 textFill="WHITE">
             <font>
@@ -75,6 +78,19 @@
                 <Font size="15.0"/>
             </font>
         </Label>
+
+        <Label layoutX="322.0" layoutY="226.0" prefHeight="30.0" prefWidth="130.0" style="-fx-font-weight: bold;"
+               text="Instructor ID" textFill="RED">
+            <font>
+                <Font size="15.0"/>
+            </font>
+        </Label>
+        <Text fx:id="ins_id_of_course" layoutX="473.0" layoutY="247.0" stroke="WHITE" strokeType="OUTSIDE"
+              strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="94.38709259033203">
+            <font>
+                <Font size="15.0"/>
+            </font>
+        </Text>
         <Text fx:id="course_count_of_std" layoutX="473.0" layoutY="195.0" stroke="WHITE" strokeType="OUTSIDE"
               strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="94.38709259033203">
             <font>
@@ -95,17 +111,55 @@
                 <Font size="15.0"/>
             </font>
         </Label>
-        <Button fx:id="deleteCourse" layoutX="605.0" layoutY="39.0" mnemonicParsing="false"
+        <Button fx:id="editCourse" layoutX="605.0" layoutY="39.0" mnemonicParsing="false" onAction="#editCourse"
                 style="-fx-background-color: #fff; -fx-background-radius: 10;" text="Edit course">
             <font>
                 <Font size="14.0"/>
             </font>
         </Button>
-        <Button fx:id="editCourse" layoutX="486.0" layoutY="39.0" mnemonicParsing="false" onAction="#deleteCourse"
+        <Button fx:id="deleteCourse" layoutX="486.0" layoutY="39.0" mnemonicParsing="false" onAction="#deleteCourse"
                 style="-fx-background-color: #fff; -fx-background-radius: 10;" text="Delete course">
             <font>
                 <Font size="14.0"/>
             </font>
         </Button>
+        <TextField fx:id="ft_name" layoutX="132.0" layoutY="125.0" promptText="Name" visible="false"/>
+        <TextField fx:id="ft_place" layoutX="132.0" layoutY="176.0" promptText="Place" visible="false"/>
+        <TextField fx:id="ft_book" layoutX="452.0" layoutY="125.0" promptText="Book" visible="false"/>
+        <Button fx:id="save_changes" layoutX="331.0" layoutY="335.0" mnemonicParsing="false" onAction="#updateData"
+                prefHeight="30.0" prefWidth="112.0" text="Save change" visible="false"/>
+
+        <TableView fx:id="lecture_of_course_table" layoutX="155.0" layoutY="311.0" prefHeight="198.0" prefWidth="379.0"
+                   style="-fx-background-color: #00B9FF;">
+            <columns>
+                <TableColumn fx:id="lec_id" prefWidth="69.5999984741211" text="Lecture ID"/>
+                <TableColumn fx:id="lec_title" prefWidth="159.20001220703125" text="Title"/>
+                <TableColumn fx:id="lec_date" minWidth="0.0" prefWidth="148.0" text="Date"/>
+            </columns>
+        </TableView>
+        <Button fx:id="cancel_changes" layoutX="187.0" layoutY="335.0" mnemonicParsing="false"
+                onAction="#cancelUpdateData" prefHeight="30.0" prefWidth="112.0" text="Cancel" textFill="RED"
+                visible="false"/>
+        <Button fx:id="add_lec" layoutX="600.0" layoutY="493.0" mnemonicParsing="false" onAction="#addNewLecture"
+                prefWidth="38.0" text="+"/>
+        <Label fx:id="text_lec_of_course" layoutX="15.0" layoutY="326.0" style="-fx-font-weight: bold;"
+               text="Lecture of course" textFill="RED">
+            <font>
+                <Font size="15.0"/>
+            </font>
+        </Label>
+        <TextField fx:id="add_lec_id" layoutX="551.0" layoutY="347.0" promptText="Enter ID of lecture"
+                   style="-fx-background-color: #fff; -fx-background-radius: 15;"/>
+        <TextField fx:id="add_lec_title" layoutX="551.0" layoutY="397.0" promptText="Title"
+                   style="-fx-background-color: #fff; -fx-background-radius: 15;"/>
+        <TextField fx:id="add_lec_date" layoutX="551.0" layoutY="446.0" promptText="Date"
+                   style="-fx-background-color: #fff; -fx-background-radius: 15;"/>
+        <Label fx:id="text_add_new_lec" layoutX="566.0" layoutY="317.0" style="-fx-font-weight: bold;"
+               text="Add new lecture" textFill="RED">
+            <font>
+                <Font size="15.0"/>
+            </font>
+        </Label>
+
     </children>
 </AnchorPane>

@@ -4,30 +4,26 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="root" prefHeight="485.0" prefWidth="739.0"
-            style="-fx-background-color: #CBD4CA; -fx-border-color: #000; -fx-border-width: 2;"
-            xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="sample.controller.HomePage">
+<AnchorPane fx:id="root" prefHeight="485.0" prefWidth="739.0" style="-fx-background-color: #CBD4CA; -fx-border-color: #000; -fx-border-width: 2;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.HomePage">
     <children>
-        <Button id="showInstructorsInfo" layoutX="236.0" layoutY="220.0" mnemonicParsing="false"
-                onAction="#showInstructorInfo" prefHeight="39.0" prefWidth="267.0"
-                style="-fx-background-color: #059200;" text="Show instructors information" textFill="WHITE">
+        <Button id="showInstructorsInfo" layoutX="236.0" layoutY="184.0" mnemonicParsing="false" onAction="#showInstructorInfo" prefHeight="39.0" prefWidth="267.0" style="-fx-background-color: #059200;" text="Show instructors information" textFill="WHITE">
             <font>
-                <Font size="18.0"/>
+                <Font size="18.0" />
             </font>
         </Button>
-        <Button id="showStudentsInfo" layoutX="236.0" layoutY="304.0" mnemonicParsing="false"
-                onAction="#showStudentInfo" prefHeight="39.0" prefWidth="267.0" style="-fx-background-color: #059200;"
-                text="Show students information" textFill="WHITE">
+        <Button id="showStudentsInfo" layoutX="236.0" layoutY="259.0" mnemonicParsing="false" onAction="#showStudentInfo" prefHeight="39.0" prefWidth="267.0" style="-fx-background-color: #059200;" text="Show students information" textFill="WHITE">
             <font>
-                <Font size="18.0"/>
+                <Font size="18.0" />
             </font>
         </Button>
-        <Button id="showCoursesInfo" layoutX="236.0" layoutY="142.0" mnemonicParsing="false" onAction="#showCoursesInfo"
-                prefHeight="39.0" prefWidth="267.0" style="-fx-background-color: #059200;"
-                text="Show courses information" textFill="WHITE">
+        <Button id="showCoursesInfo" layoutX="236.0" layoutY="104.0" mnemonicParsing="false" onAction="#showCoursesInfo" prefHeight="39.0" prefWidth="267.0" style="-fx-background-color: #059200;" text="Show courses information" textFill="WHITE">
             <font>
-                <Font size="18.0"/>
+                <Font size="18.0" />
+            </font>
+        </Button>
+        <Button id="showStudentsInfo" layoutX="236.0" layoutY="332.0" mnemonicParsing="false" onAction="#showLecturesInfo" prefHeight="39.0" prefWidth="267.0" style="-fx-background-color: #059200;" text="Show lectures information" textFill="WHITE">
+            <font>
+                <Font size="18.0" />
             </font>
         </Button>
     </children>

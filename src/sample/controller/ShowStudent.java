@@ -205,40 +205,40 @@ public class ShowStudent implements Initializable {
 
     public void saveChanges(ActionEvent actionEvent) {
 
-        db.updateStudent(std_id.getValue().toString(), tf_first_name.getText(),
+        if (db.updateStudent(std_id.getValue().toString(), tf_first_name.getText(),
                 tf_father_name.getText(),
                 tf_grand_father_name.getText(),
                 tf_last_name.getText(),
                 cb_city.getValue().toString(),
                 tf_district.getText(),
                 tf_street.getText(),
-                cb_gender.getValue().toString());
+                cb_gender.getValue().toString())) {
 
-        showAlert("Success", "Success", "Data updated successfully");
+            showAlert("Success", "Success", "Data updated successfully");
 
+            std_first_name.setVisible(true);
+            std_father_name.setVisible(true);
+            std_gfather_name.setVisible(true);
+            std_last_name.setVisible(true);
+            std_city.setVisible(true);
+            std_district.setVisible(true);
+            std_street.setVisible(true);
+            std_gender.setVisible(true);
+            addStdToCourse.setVisible(true);
+            add_label_phone.setVisible(true);
+            coursesIds.setVisible(true);
+            text_add.setVisible(true);
 
-        std_first_name.setVisible(true);
-        std_father_name.setVisible(true);
-        std_gfather_name.setVisible(true);
-        std_last_name.setVisible(true);
-        std_city.setVisible(true);
-        std_district.setVisible(true);
-        std_street.setVisible(true);
-        std_gender.setVisible(true);
-        addStdToCourse.setVisible(true);
-        add_label_phone.setVisible(true);
-        coursesIds.setVisible(true);
-        text_add.setVisible(true);
-
-        //
-        tf_first_name.setVisible(false);
-        tf_father_name.setVisible(false);
-        tf_grand_father_name.setVisible(false);
-        tf_last_name.setVisible(false);
-        tf_district.setVisible(false);
-        tf_street.setVisible(false);
-        cb_city.setVisible(false);
-        cb_gender.setVisible(false);
-        bt_save_changes.setVisible(false);
+            //
+            tf_first_name.setVisible(false);
+            tf_father_name.setVisible(false);
+            tf_grand_father_name.setVisible(false);
+            tf_last_name.setVisible(false);
+            tf_district.setVisible(false);
+            tf_street.setVisible(false);
+            cb_city.setVisible(false);
+            cb_gender.setVisible(false);
+            bt_save_changes.setVisible(false);
+        }
     }
 }
