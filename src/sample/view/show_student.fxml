@@ -193,7 +193,9 @@
                 <Font name="System Bold" size="14.0"/>
             </font>
         </Button>
-        <Button fx:id="bt_save_changes" layoutX="333.0" layoutY="447.0" mnemonicParsing="false" onAction="#saveChanges"
-                prefHeight="34.0" prefWidth="120.0" text="Save changes" visible="false"/>
+        <Button fx:id="bt_save_changes" layoutX="376.0" layoutY="447.0" mnemonicParsing="false" onAction="#saveChanges"
+                prefHeight="32.0" prefWidth="78.0" text="Save" visible="false"/>
+        <Button fx:id="bt_cancel" layoutX="277.0" layoutY="447.0" mnemonicParsing="false" onAction="#cancel"
+                prefHeight="32.0" prefWidth="78.0" text="Cancel" textFill="RED" visible="false"/>
     </children>
 </AnchorPane>

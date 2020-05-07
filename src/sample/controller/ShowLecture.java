@@ -19,6 +19,8 @@ public class ShowLecture implements Initializable {
 
 
     DBModel dbModel = new DBModel();
+   // DBModel dbModel = new DBModel(LoginController.username,LoginController.password);
+
     Navigation navigation = new Navigation();
     @FXML
     public AnchorPane root;
@@ -34,6 +36,8 @@ public class ShowLecture implements Initializable {
     public Text lec_date;
     @FXML
     public Text count_att;
+    @FXML
+    public Text percentage_att;
     @FXML
     public Button bt_cancel;
     @FXML
@@ -57,7 +61,6 @@ public class ShowLecture implements Initializable {
     @FXML
     public Label txt_std_att;
 
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         lecture_id.setItems(FXCollections.observableArrayList(dbModel.getLecturesIDs()));
@@ -70,6 +73,10 @@ public class ShowLecture implements Initializable {
     }
 
     public void showInformation() {
+        double count = Integer.parseInt(dbModel.allOfAtt(lecture_id.getValue().toString()));
+        double att_true = Integer.parseInt(dbModel.countOfAtt(lecture_id.getValue().toString()));
+        double percentage = (att_true / count) * 100;
+
         if (lecture_id.getValue() != null) {
             student_att.setItems(FXCollections.observableArrayList(
                     dbModel.showStudentWhoAttInfo(lecture_id.getValue().toString())));
@@ -81,6 +88,13 @@ public class ShowLecture implements Initializable {
             count_att.setText(dbModel.countOfAtt(lecture_id.getValue().toString()));
             ft_title.setText(dbModel.getTitleLecture(lecture_id.getValue().toString()));
             ft_date.setText(dbModel.getDateLecture(lecture_id.getValue().toString()));
+
+            if (count == 0) {
+                percentage_att.setText("0 %");
+            } else {
+                percentage_att.setText(percentage + " %");
+
+            }
         }
     }
 
@@ -135,5 +149,10 @@ public class ShowLecture implements Initializable {
         student_att.setVisible(true);
         lec_title.setVisible(true);
         lec_date.setVisible(true);
+    }
+
+
+    public void searchLecture(ActionEvent actionEvent) {
+        navigation.navTo(root, navigation.move_to_search_lecture);
     }
 }

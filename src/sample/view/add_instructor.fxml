@@ -6,28 +6,32 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="485.0" prefWidth="739.0" style="-fx-background-color: #CBD4CA;"
+<AnchorPane fx:id="root" prefHeight="646.0" prefWidth="810.0" style="-fx-background-color: #CBD4CA;"
             xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="sample.controller.AddInstructor">
 
     <children>
-        <Label layoutX="26.0" layoutY="63.0" prefHeight="30.0" prefWidth="75.0" text="ID" textFill="#cb0600">
+        <Label layoutX="26.0" layoutY="63.0" prefHeight="30.0" prefWidth="95.0" text="ID" textFill="#cb0600">
             <font>
                 <Font size="18.0"/>
             </font>
         </Label>
-        <TextField layoutX="144.0" layoutY="65.0" promptText="Enter ID" style="-fx-background-color: #FFF;"/>
-        <TextField layoutX="144.0" layoutY="131.0" promptText="Enter father name" style="-fx-background-color: #FFF;"/>
-        <Button layoutX="185.0" layoutY="386.0" mnemonicParsing="false"
+        <TextField fx:id="ID" layoutX="130.0" layoutY="63.0" promptText="Enter ID"
+                   style="-fx-background-color: #FFF; -fx-background-radius: 15;">
+            <font>
+                <Font size="14.0"/>
+            </font>
+        </TextField>
+        <Button layoutX="278.0" layoutY="386.0" mnemonicParsing="false" onAction="#Back"
                 style="-fx-background-color: #FFF; -fx-border-color: #000; -fx-background-radius: 12; -fx-border-radius: 12; -fx-border-width: 0.5;"
-                text="Cancel" textFill="RED">
+                text="Back" textFill="RED">
             <font>
                 <Font size="15.0"/>
             </font>
         </Button>
-        <Button layoutX="438.0" layoutY="386.0" mnemonicParsing="false"
+        <Button layoutX="392.0" layoutY="386.0" mnemonicParsing="false" onAction="#Save"
                 style="-fx-background-color: #FFF; -fx-border-color: #000; -fx-background-radius: 12; -fx-border-radius: 12; -fx-border-width: 0.5;"
-                text="Save" textFill="RED">
+                text="Add" textFill="RED">
             <font>
                 <Font size="15.0"/>
             </font>
@@ -37,6 +41,11 @@
                 <Font size="18.0"/>
             </font>
         </Label>
+        <TextField fx:id="name" layoutX="130.0" layoutY="128.0" promptText="Enter name"
+                   style="-fx-background-color: #FFF; -fx-background-radius: 15;">
+            <font>
+                <Font size="14.0"/>
+            </font>
+        </TextField>
     </children>
-
 </AnchorPane>

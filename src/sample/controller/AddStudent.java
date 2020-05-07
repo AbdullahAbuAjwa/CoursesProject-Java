@@ -16,7 +16,9 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class AddStudent implements Initializable {
-    DBModel dbModel = new DBModel();
+   DBModel dbModel = new DBModel();
+    //DBModel dbModel = new DBModel(LoginController.username,LoginController.password);
+
     Navigation navigation = new Navigation();
     @FXML
     public AnchorPane root;
@@ -69,12 +71,12 @@ public class AddStudent implements Initializable {
                 || father_name.getText() == null
                 || grand_father_name.getText() == null
                 || last_name.getText() == null
-                || city.getValue().toString() == null
+                || city.getValue() == null
                 || district.getText() == null
                 || street.getText() == null
-                || gender.getValue().toString() == null
+                || gender.getValue() == null
                 || phone.getText() == null) {
-            showAlertError("Error", "Error", "Please Enter all fields");
+            showAlert(Alert.AlertType.ERROR, "Error", "Error", "Please Enter all fields");
         } else {
             if (dbModel.insertStudent(ID.getText(),
                     first_name.getText(), father_name.getText(), grand_father_name.getText(),
@@ -85,7 +87,7 @@ public class AddStudent implements Initializable {
                     gender.getValue().toString()) &&
                     dbModel.insertPhoneStudent(ID.getText(), Integer.parseInt(phone.getText()))) {
 
-                showAlert("Success", "Success", "The student Added Successfully");
+                showAlert(Alert.AlertType.INFORMATION, "Success", "Success", "The student Added Successfully");
                 ID.clear();
                 first_name.clear();
                 father_name.clear();
@@ -100,8 +102,8 @@ public class AddStudent implements Initializable {
         }
     }
 
-    public void showAlert(String message, String header, String content) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+    public void showAlert(Alert.AlertType type, String message, String header, String content) {
+        Alert alert = new Alert(type);
         alert.setTitle(message);
         alert.setHeaderText(header);
         alert.setContentText(content);
@@ -110,13 +112,4 @@ public class AddStudent implements Initializable {
         });
     }
 
-    public void showAlertError(String message, String header, String content) {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle(message);
-        alert.setHeaderText(header);
-        alert.setContentText(content);
-        alert.showAndWait().ifPresent(rs -> {
-
-        });
-    }
 }

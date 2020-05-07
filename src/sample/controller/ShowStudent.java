@@ -22,6 +22,8 @@ public class ShowStudent implements Initializable {
 
     Navigation navigation = new Navigation();
     DBModel db = new DBModel();
+    //DBModel db = new DBModel(LoginController.username, LoginController.password);
+
 
     @FXML
     public Text std_first_name;
@@ -74,6 +76,8 @@ public class ShowStudent implements Initializable {
     public ComboBox cb_gender;
     @FXML
     public Button bt_save_changes;
+    @FXML
+    public Button bt_cancel;
     @FXML
     public Label text_add;
 
@@ -201,6 +205,7 @@ public class ShowStudent implements Initializable {
         cb_city.setVisible(true);
         cb_gender.setVisible(true);
         bt_save_changes.setVisible(true);
+        bt_cancel.setVisible(true);
     }
 
     public void saveChanges(ActionEvent actionEvent) {
@@ -239,6 +244,35 @@ public class ShowStudent implements Initializable {
             cb_city.setVisible(false);
             cb_gender.setVisible(false);
             bt_save_changes.setVisible(false);
+            bt_cancel.setVisible(false);
         }
+    }
+
+    public void cancel(ActionEvent actionEvent) {
+
+        std_first_name.setVisible(true);
+        std_father_name.setVisible(true);
+        std_gfather_name.setVisible(true);
+        std_last_name.setVisible(true);
+        std_city.setVisible(true);
+        std_district.setVisible(true);
+        std_street.setVisible(true);
+        std_gender.setVisible(true);
+        addStdToCourse.setVisible(true);
+        add_label_phone.setVisible(true);
+        coursesIds.setVisible(true);
+        text_add.setVisible(true);
+
+        //
+        tf_first_name.setVisible(false);
+        tf_father_name.setVisible(false);
+        tf_grand_father_name.setVisible(false);
+        tf_last_name.setVisible(false);
+        tf_district.setVisible(false);
+        tf_street.setVisible(false);
+        cb_city.setVisible(false);
+        cb_gender.setVisible(false);
+        bt_save_changes.setVisible(false);
+        bt_cancel.setVisible(false);
     }
 }

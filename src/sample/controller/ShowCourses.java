@@ -21,6 +21,8 @@ public class ShowCourses implements Initializable {
 
     Navigation navigation = new Navigation();
     DBModel dbModel = new DBModel();
+//    DBModel dbModel = new DBModel(LoginController.username,LoginController.password);
+
     @FXML
     public AnchorPane root;
     @FXML

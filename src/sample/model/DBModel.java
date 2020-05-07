@@ -7,10 +7,12 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class DBModel {
+
     //here our queries method
     public DBModel() {
         schemaConnect("public");
     }
+
 
     private static DBModel dbmodel = null;
     Connection con = null;
@@ -21,6 +23,7 @@ public class DBModel {
         }
         return dbmodel;
     }
+
 
     public void connect() {
 
@@ -97,6 +100,30 @@ public class DBModel {
                 ));
             }
             return students;
+        } catch (SQLException ex) {
+
+            ex.printStackTrace();
+            return null;
+        }
+    }
+
+    public ArrayList<AttendeeList> getAttendeesList(int phone) {
+        ArrayList<AttendeeList> lists = new ArrayList<>();
+        String sql = "select lec_id , course_id , inst_id , title , date_lec , attendee from attendees" +
+                " natural join phone_student natural join lecture where phone_number = " + phone + ";";
+
+        try (Statement statement = con.createStatement();
+             ResultSet resultSet = statement.executeQuery(sql)) {
+            while (resultSet.next()) {
+                lists.add(new AttendeeList(
+                        resultSet.getString(1),
+                        resultSet.getString(2),
+                        resultSet.getString(3),
+                        resultSet.getString(4),
+                        resultSet.getString(5),
+                        resultSet.getBoolean(6)));
+            }
+            return lists;
         } catch (SQLException ex) {
 
             ex.printStackTrace();
@@ -332,7 +359,6 @@ public class DBModel {
 
     }
 
-
     public String getCoursesToLecture(String id) {
         String sql = "select course_id from lecture where lec_id = ? ;";
         try (PreparedStatement st = con.prepareStatement(sql)) {
@@ -350,10 +376,59 @@ public class DBModel {
         }
     }
 
+    public String getCoursesToLecture_Title(String title) {
+        String sql = "select course_id from lecture where title = ? ;";
+        try (PreparedStatement st = con.prepareStatement(sql)) {
+            st.setString(1, title);
+            ResultSet rs = st.executeQuery();
+            if (rs.next()) {
+                //System.out.println(rs.getString(1));
+                return rs.getString(1);
+            }
+            return null;
+        } catch (SQLException ex) {
+
+            ex.printStackTrace();
+            return null;
+        }
+    }
+
     public String getInstIDsToLecture(String id) {
         String sql = "select inst_id from lecture where lec_id = ? ;";
         try (PreparedStatement st = con.prepareStatement(sql)) {
             st.setString(1, id);
+            ResultSet rs = st.executeQuery();
+            if (rs.next()) {
+                return rs.getString(1);
+            }
+            return null;
+        } catch (SQLException ex) {
+
+            ex.printStackTrace();
+            return null;
+        }
+    }
+
+    public String getInstIDsToLecture_title(String title) {
+        String sql = "select inst_id from lecture where title = ? ;";
+        try (PreparedStatement st = con.prepareStatement(sql)) {
+            st.setString(1, title);
+            ResultSet rs = st.executeQuery();
+            if (rs.next()) {
+                return rs.getString(1);
+            }
+            return null;
+        } catch (SQLException ex) {
+
+            ex.printStackTrace();
+            return null;
+        }
+    }
+
+    public String getLecIDTitle(String title) {
+        String sql = "select lec_id from lecture where title = ? ;";
+        try (PreparedStatement st = con.prepareStatement(sql)) {
+            st.setString(1, title);
             ResultSet rs = st.executeQuery();
             if (rs.next()) {
                 return rs.getString(1);
@@ -398,9 +473,24 @@ public class DBModel {
         }
     }
 
-    //select count(*) from attendees  where lec_id = 'c2_lec1';
+    public String getDateLectureTitle(String title) {
+        String sql = "select date_lec from lecture where title = ? ;";
+        try (PreparedStatement st = con.prepareStatement(sql)) {
+            st.setString(1, title);
+            ResultSet rs = st.executeQuery();
+            if (rs.next()) {
+                return rs.getString(1);
+            }
+            return null;
+        } catch (SQLException ex) {
+
+            ex.printStackTrace();
+            return null;
+        }
+    }
+
     public String countOfAtt(String id) {
-        String sql = "select count(*) from attendees where lec_id = ? ;";
+        String sql = "select count(*) from attendees where lec_id = ? and attendee = true;";
         try (PreparedStatement st = con.prepareStatement(sql)) {
             st.setString(1, id);
             ResultSet rs = st.executeQuery();
@@ -415,6 +505,37 @@ public class DBModel {
         }
     }
 
+    public String allOfAtt(String id) {
+        String sql = "select count(*) from attendees where lec_id = ? ";
+        try (PreparedStatement st = con.prepareStatement(sql)) {
+            st.setString(1, id);
+            ResultSet rs = st.executeQuery();
+            if (rs.next()) {
+                return rs.getString(1);
+            }
+            return null;
+        } catch (SQLException ex) {
+
+            ex.printStackTrace();
+            return null;
+        }
+    }
+
+    public String countOfAtt_title(String title) {
+        String sql = "select count(*) from attendees natural join lecture where title = ? ;";
+        try (PreparedStatement st = con.prepareStatement(sql)) {
+            st.setString(1, title);
+            ResultSet rs = st.executeQuery();
+            if (rs.next()) {
+                return rs.getString(1);
+            }
+            return null;
+        } catch (SQLException ex) {
+
+            ex.printStackTrace();
+            return null;
+        }
+    }
 
     public String getNameCourse(String id) {
         String sql = "select name from course where course_id = ? ;";
@@ -501,7 +622,6 @@ public class DBModel {
         }
     }
 
-
     public String CountOfStudentTakeCourse(String id) {
         String sql = "select count(*) from student natural join takes where course_id = ? ;";
         try (PreparedStatement st = con.prepareStatement(sql)) {
@@ -555,6 +675,60 @@ public class DBModel {
         }
     }
 
+    public ArrayList<String> getPhones() {
+        String sql = "select phone_number from phone_student ;";
+        ArrayList<String> ids = new ArrayList<>();
+        try (Statement st = con.createStatement();
+             ResultSet rs = st.executeQuery(sql)
+        ) {
+            while (rs.next()) {
+                ids.add(rs.getString(1));
+            }
+            return ids;
+        } catch (SQLException ex) {
+
+            ex.printStackTrace();
+            return null;
+        }
+    }
+
+    public ArrayList<String> getCoursesIDsToAtt(int phone) {
+        //select course_id from takes natural join student natural join phone_student where phone_number = 597111111;
+        String sql = "select course_id from takes natural join student natural join phone_student where " +
+                "phone_number = '" + phone + "';";
+        ArrayList<String> ids = new ArrayList<>();
+        try (Statement st = con.createStatement();
+             ResultSet rs = st.executeQuery(sql)
+        ) {
+            while (rs.next()) {
+                ids.add(rs.getString(1));
+            }
+            return ids;
+        } catch (SQLException ex) {
+
+            ex.printStackTrace();
+            return null;
+        }
+    }
+
+    public ArrayList<String> getLecturesIDsToAtt(String course_id) {
+//select lec_id from lecture l where course_id = 'c1';
+        String sql = "select lec_id from lecture where course_id = '" + course_id + "';";
+        ArrayList<String> ids = new ArrayList<>();
+        try (Statement st = con.createStatement();
+             ResultSet rs = st.executeQuery(sql)
+        ) {
+            while (rs.next()) {
+                ids.add(rs.getString(1));
+            }
+            return ids;
+        } catch (SQLException ex) {
+
+            ex.printStackTrace();
+            return null;
+        }
+    }
+
     public ArrayList<String> getCourseExcept(String id) {
         String sql = "select course_id from course c except select course_id from takes t where id = '" + id + "';";
         ArrayList<String> ids = new ArrayList<>();
@@ -573,8 +747,25 @@ public class DBModel {
         }
     }
 
+    public ArrayList<String> getCourseExceptTeaches() {
+        String sql = "select course_id from course except select course_id from teaches ;";
+        ArrayList<String> ids = new ArrayList<>();
+        try (Statement st = con.createStatement();
+             ResultSet rs = st.executeQuery(sql)
+        ) {
+            while (rs.next()) {
+                ids.add(rs.getString(1));
+            }
+            return ids;
+        } catch (SQLException ex) {
+
+            ex.printStackTrace();
+            return null;
+        }
+    }
+
     public ArrayList<String> getStdId() {
-        String sql = "select id from student;";
+        String sql = "select id from student order by 1;";
         ArrayList<String> ids = new ArrayList<>();
         try (Statement st = con.createStatement();
              ResultSet rs = st.executeQuery(sql)
@@ -616,7 +807,7 @@ public class DBModel {
             st.setString(3, book);
             st.setString(4, place);
 
-            return st.executeUpdate() > -1;
+            return st.executeUpdate() > 0;
 
         } catch (SQLException ex) {
 
@@ -624,6 +815,7 @@ public class DBModel {
             return false;
         }
     }
+
 
     public Boolean insertLecture(String lec_id, String course_id, String inst_id, String title, Date date) {
         String query = "insert into lecture(lec_id , course_id , inst_id , title , date_lec) values (?,?,?,?,?);";
@@ -644,8 +836,41 @@ public class DBModel {
         }
     }
 
+    public Boolean insertAttendees(int phone_number, String course_id, String lec_id, Boolean attendee) {
+        String query = "insert into attendees(phone_number , course_id , lec_id , attendee) values (?,?,?,?);";
+
+        try (PreparedStatement st = con.prepareStatement(query)) {
+            st.setInt(1, phone_number);
+            st.setString(2, course_id);
+            st.setString(3, lec_id);
+            st.setBoolean(4, attendee);
+
+            return st.executeUpdate() > -1;
+        } catch (SQLException ex) {
+
+            ex.printStackTrace();
+            return false;
+        }
+    }
+
     public Boolean insertStdToCourse(String id, String course_id) {
         String query = "insert into takes(id , course_id) values (?,?);";
+
+        try (PreparedStatement st = con.prepareStatement(query)) {
+            st.setString(1, id);
+            st.setString(2, course_id);
+
+            return st.executeUpdate() > 0;
+
+        } catch (SQLException ex) {
+
+            ex.printStackTrace();
+            return false;
+        }
+    }
+
+    public Boolean insertInsToCourse(String id, String course_id) {
+        String query = "insert into teaches(id , course_id) values (?,?);";
 
         try (PreparedStatement st = con.prepareStatement(query)) {
             st.setString(1, id);
@@ -675,6 +900,21 @@ public class DBModel {
             st.setString(7, district);
             st.setString(8, street);
             st.setString(9, gender);
+
+            return st.executeUpdate() > 0;
+
+        } catch (SQLException ex) {
+
+            ex.printStackTrace();
+            return false;
+        }
+    }
+
+    public Boolean insertInstructor(String id, String name) {
+        String query = "insert into instructor(id , name ) values (?,?);";
+        try (PreparedStatement st = con.prepareStatement(query)) {
+            st.setString(1, id);
+            st.setString(2, name);
 
             return st.executeUpdate() > 0;
 
@@ -786,7 +1026,6 @@ public class DBModel {
             ex.printStackTrace();
         }
     }
-
 
     public void exit() {
         closeEverything();

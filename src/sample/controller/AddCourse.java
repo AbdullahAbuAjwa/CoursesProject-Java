@@ -16,6 +16,7 @@ public class AddCourse implements Initializable {
     public AnchorPane root;
     Navigation navigation = new Navigation();
     DBModel db = new DBModel();
+    //  DBModel db = new DBModel(LoginController.username,LoginController.password);
 
     @FXML
     public TextField ID;
@@ -33,24 +34,25 @@ public class AddCourse implements Initializable {
 
 
     public void addInfo() {
-        if (ID.getText() != null && name.getText() != null && book.getText() != null
-                && place.getText() != null) {
+        if (ID.getText() == null || name.getText() == null || book.getText() == null
+                || place.getText() == null) {
+            showAlert(Alert.AlertType.ERROR, "Error", "Error", "Please fill all fields");
+
+        } else {
             if (db.insertCourse(ID.getText(),
                     name.getText(), book.getText(),
                     place.getText())) {
-                showAlert("Success", "Success", "The course added");
+                showAlert(Alert.AlertType.INFORMATION, "Success", "Success", "The course added");
                 ID.clear();
                 name.clear();
                 book.clear();
                 place.clear();
             }
-        } else {
-            showAlertError("Error", "Error", "Please fill all fields");
         }
     }
 
-    public void showAlert(String message, String header, String content) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+    public void showAlert(Alert.AlertType type, String message, String header, String content) {
+        Alert alert = new Alert(type);
         alert.setTitle(message);
         alert.setHeaderText(header);
         alert.setContentText(content);
@@ -58,14 +60,6 @@ public class AddCourse implements Initializable {
         });
     }
 
-    public void showAlertError(String message, String header, String content) {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle(message);
-        alert.setHeaderText(header);
-        alert.setContentText(content);
-        alert.showAndWait().ifPresent(rs -> {
-        });
-    }
 
     public void Cancel() {
         navigation.navTo(root, navigation.move_to_show_course);
