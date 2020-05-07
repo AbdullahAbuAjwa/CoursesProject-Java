@@ -15,7 +15,9 @@ public class AddCourse implements Initializable {
     @FXML
     public AnchorPane root;
     Navigation navigation = new Navigation();
-    DBModel db = new DBModel();
+    //DBModel db = new DBModel();
+    DBModel db = new DBModel(LoginController.username, LoginController.password);
+
     //  DBModel db = new DBModel(LoginController.username,LoginController.password);
 
     @FXML
@@ -34,7 +36,7 @@ public class AddCourse implements Initializable {
 
 
     public void addInfo() {
-        if (ID.getText() == null || name.getText() == null || book.getText() == null
+        if (ID.getText().equals("") || name.getText().equals("") || book.getText().equals("")
                 || place.getText() == null) {
             showAlert(Alert.AlertType.ERROR, "Error", "Error", "Please fill all fields");
 

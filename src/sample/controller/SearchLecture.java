@@ -26,8 +26,8 @@ public class SearchLecture implements Initializable {
     public Text count_att;
     @FXML
     public TextField tf_title;
-    DBModel dbModel = new DBModel();
-   // DBModel dbModel = new DBModel(LoginController.username,LoginController.password);
+    //DBModel dbModel = new DBModel();
+    DBModel dbModel = new DBModel(LoginController.username, LoginController.password);
 
     Navigation navigation = new Navigation();
     @FXML

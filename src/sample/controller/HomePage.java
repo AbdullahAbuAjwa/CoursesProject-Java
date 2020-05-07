@@ -17,8 +17,6 @@ public class HomePage implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-//        System.out.println(DBModel.username);
-//        System.out.println(DBModel.password);
     }
 
     public void showStudentInfo() {

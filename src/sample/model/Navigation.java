@@ -17,6 +17,7 @@ public class Navigation {
     public final String move_to_add_new_course = "/sample/view/add_course.fxml";
     public final String move_to_add_new_att = "/sample/view/add_att.fxml";
     public final String move_to_search_lecture= "/sample/view/search_lecture.fxml";
+    public final String move_to_student_committed= "/sample/view/student_committed.fxml";
 
     public void navTo(Parent rootPane, String path) {
         try {

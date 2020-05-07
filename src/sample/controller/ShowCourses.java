@@ -20,8 +20,8 @@ public class ShowCourses implements Initializable {
 
 
     Navigation navigation = new Navigation();
-    DBModel dbModel = new DBModel();
-//    DBModel dbModel = new DBModel(LoginController.username,LoginController.password);
+    //DBModel dbModel = new DBModel();
+    DBModel dbModel = new DBModel(LoginController.username, LoginController.password);
 
     @FXML
     public AnchorPane root;
@@ -77,6 +77,7 @@ public class ShowCourses implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
         allCoursesIDs.setItems(FXCollections.observableArrayList(dbModel.getCourseIDs()));
         lec_id.setCellValueFactory(new PropertyValueFactory<>("lec_id"));
         lec_title.setCellValueFactory(new PropertyValueFactory<>("title"));

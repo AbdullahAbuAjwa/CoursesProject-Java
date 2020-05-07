@@ -12,7 +12,7 @@
             xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="sample.controller.ShowStudent">
     <children>
-        <Button layoutX="405.0" layoutY="530.0" mnemonicParsing="false" onAction="#addNewStd" prefHeight="34.0"
+        <Button layoutX="547.0" layoutY="530.0" mnemonicParsing="false" onAction="#addNewStd" prefHeight="34.0"
                 prefWidth="120.0" style="-fx-background-color: #059200; -fx-border-color: #000;" text="Add new student"
                 textFill="WHITE">
             <font>
@@ -145,7 +145,7 @@
                 <Font size="15.0"/>
             </font>
         </Text>
-        <Button layoutX="256.0" layoutY="530.0" mnemonicParsing="false" onAction="#backToHome" prefHeight="34.0"
+        <Button layoutX="143.0" layoutY="530.0" mnemonicParsing="false" onAction="#backToHome" prefHeight="34.0"
                 prefWidth="120.0" style="-fx-background-color: #059200; -fx-border-color: #000;" text="Back"
                 textFill="WHITE">
             <font>
@@ -191,6 +191,13 @@
                 style="-fx-background-color: #f00;" text="Edit data" textFill="WHITE">
             <font>
                 <Font name="System Bold" size="14.0"/>
+            </font>
+        </Button>
+        <Button layoutX="301.0" layoutY="530.0" mnemonicParsing="false" onAction="#std_committed" prefHeight="34.0"
+                prefWidth="207.0" style="-fx-background-color: #059200; -fx-border-color: #000;"
+                text="Students committed to attend" textFill="WHITE">
+            <font>
+                <Font size="13.0"/>
             </font>
         </Button>
         <Button fx:id="bt_save_changes" layoutX="376.0" layoutY="447.0" mnemonicParsing="false" onAction="#saveChanges"

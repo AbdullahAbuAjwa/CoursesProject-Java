@@ -16,8 +16,8 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class AddStudent implements Initializable {
-   DBModel dbModel = new DBModel();
-    //DBModel dbModel = new DBModel(LoginController.username,LoginController.password);
+    //  DBModel dbModel = new DBModel();
+    DBModel dbModel = new DBModel(LoginController.username, LoginController.password);
 
     Navigation navigation = new Navigation();
     @FXML
@@ -67,15 +67,15 @@ public class AddStudent implements Initializable {
     }
 
     public void addStd() {
-        if (ID.getText() == null || first_name.getText() == null
-                || father_name.getText() == null
-                || grand_father_name.getText() == null
-                || last_name.getText() == null
-                || city.getValue() == null
-                || district.getText() == null
-                || street.getText() == null
-                || gender.getValue() == null
-                || phone.getText() == null) {
+        if (ID.getText() == null || first_name.getText().equals("")
+                || father_name.getText().equals("")
+                || grand_father_name.getText().equals("")
+                || last_name.getText().equals("")
+                || city.getValue().equals("")
+                || district.getText().equals("")
+                || street.getText().equals("")
+                || gender.getValue().equals("")
+                || phone.getText().equals("")) {
             showAlert(Alert.AlertType.ERROR, "Error", "Error", "Please Enter all fields");
         } else {
             if (dbModel.insertStudent(ID.getText(),
@@ -101,6 +101,7 @@ public class AddStudent implements Initializable {
             }
         }
     }
+
 
     public void showAlert(Alert.AlertType type, String message, String header, String content) {
         Alert alert = new Alert(type);

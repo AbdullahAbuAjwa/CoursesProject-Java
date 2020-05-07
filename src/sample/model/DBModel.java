@@ -9,8 +9,11 @@ import java.util.Collections;
 public class DBModel {
 
     //here our queries method
-    public DBModel() {
-        schemaConnect("public");
+//    public DBModel() {
+//        schemaConnect("public" );
+//    }
+    public DBModel(String username, String password) {
+        schemaConnect("public", username, password);
     }
 
 
@@ -19,13 +22,13 @@ public class DBModel {
 
     public static DBModel getModel() {
         if (dbmodel == null) {
-            dbmodel = new DBModel();
+            dbmodel = new DBModel("postgres", "123456");
         }
         return dbmodel;
     }
 
 
-    public void connect() {
+    public void connect(String username, String password) {
 
         PGSimpleDataSource source = new PGSimpleDataSource();
         source.setServerName("localhost");
@@ -42,11 +45,11 @@ public class DBModel {
 
     }
 
-    public void schemaConnect(String schema) {
+    public void schemaConnect(String schema, String username, String password) {
         String sql = "set search_path to '" + schema + "'";
         Statement s1 = null;
         try {
-            connect();
+            connect(username, password);
             s1 = con.createStatement();
             s1.execute(sql);
             System.out.println("Connected to schema " + schema);
@@ -514,6 +517,22 @@ public class DBModel {
                 return rs.getString(1);
             }
             return null;
+        } catch (SQLException ex) {
+
+            ex.printStackTrace();
+            return null;
+        }
+    }
+
+    public ArrayList<Object> CountLecturesForCourse() {
+        String sql = "select count(lec_id) , course_id from lecture l group by 2 ; ";
+        try (PreparedStatement st = con.prepareStatement(sql)) {
+            ArrayList<Object> list = new ArrayList<>();
+            ResultSet rs = st.executeQuery();
+            if (rs.next()) {
+                list.add(rs.getString(1));
+            }
+            return list;
         } catch (SQLException ex) {
 
             ex.printStackTrace();

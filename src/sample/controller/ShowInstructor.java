@@ -16,8 +16,8 @@ import java.util.ResourceBundle;
 
 public class ShowInstructor implements Initializable {
 
-    DBModel db = new DBModel();
-    //DBModel db = new DBModel(LoginController.username,LoginController.password);
+   // DBModel db = new DBModel();
+   DBModel db = new DBModel(LoginController.username, LoginController.password);
 
     Navigation navigation = new Navigation();
 

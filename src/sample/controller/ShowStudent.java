@@ -19,10 +19,10 @@ import java.util.ResourceBundle;
 
 public class ShowStudent implements Initializable {
 
+    DBModel db = new DBModel(LoginController.username, LoginController.password);
 
     Navigation navigation = new Navigation();
-    DBModel db = new DBModel();
-    //DBModel db = new DBModel(LoginController.username, LoginController.password);
+    //   DBModel db = new DBModel();
 
 
     @FXML
@@ -274,5 +274,9 @@ public class ShowStudent implements Initializable {
         cb_gender.setVisible(false);
         bt_save_changes.setVisible(false);
         bt_cancel.setVisible(false);
+    }
+
+    public void std_committed(ActionEvent actionEvent) {
+        navigation.navTo(root, navigation.move_to_student_committed);
     }
 }

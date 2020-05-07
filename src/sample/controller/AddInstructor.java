@@ -15,14 +15,14 @@ import java.util.ResourceBundle;
 public class AddInstructor implements Initializable {
     @FXML
     public AnchorPane root;
-    DBModel db = new DBModel();
+    //  DBModel db = new DBModel();
     Navigation navigation = new Navigation();
 
     @FXML
     public TextField ID;
     @FXML
     public TextField name;
-    //DBModel dbModel = new DBModel(LoginController.username,LoginController.password);
+    DBModel db = new DBModel(LoginController.username, LoginController.password);
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -30,7 +30,7 @@ public class AddInstructor implements Initializable {
     }
 
     public void Save(ActionEvent actionEvent) {
-        if (ID.getText() == null || name.getText() == null) {
+        if (ID.getText().equals("") || name.getText().equals("")) {
             showAlert(Alert.AlertType.ERROR, "Error", "Error", "Please Enter all fields");
         } else {
             if (db.insertInstructor(ID.getText(), name.getText())) {

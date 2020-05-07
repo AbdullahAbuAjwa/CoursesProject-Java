@@ -18,7 +18,7 @@ import java.util.ResourceBundle;
 public class AddAtt implements Initializable {
 
 
-    DBModel dbModel = new DBModel();
+    DBModel dbModel = new DBModel(LoginController.username, LoginController.password);
     //DBModel dbModel = new DBModel(LoginController.username,LoginController.password);
     Navigation navigation = new Navigation();
     @FXML
